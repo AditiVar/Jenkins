@@ -362,16 +362,3 @@ jenkins:x:993:993:Jenkins Automation Server:/var/lib/jenkins:/bin/bash
 
 Now the Jenkins user has an interactive Bash shell.
 
-You can switch to the Jenkins user using:
-
-```bash
-sudo su -s /bin/bash jenkins
-```
-
-Or:
-
-```bash
-sudo -iu jenkins
-```
-
----
