@@ -375,25 +375,3 @@ sudo -iu jenkins
 ```
 
 ---
-
-# Quick Troubleshooting Summary
-
-| Issue                                 | Root Cause                                                     | Solution                                                   |
-| ------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------- |
-| Jenkins node keeps going offline      | `/tmp` available space was below Jenkins' disk-space threshold | Configure `/tmp` with a persistent 1.5 GB systemd override |
-| `/tmp` size resets after EC2 restart  | Temporary remount was not persistent                           | Create `/etc/systemd/system/tmp.mount.d/override.conf`     |
-| Jenkins user has no interactive shell | Shell configured as `/bin/false`                               | Change shell to `/bin/bash` using `usermod`                |
-| Git not available                     | Git was not installed                                          | Install using `sudo dnf install git -y`                    |
-
----
-
-# Final Configuration
-
-After completing the above steps:
-
-* Git is installed and available.
-* Required Jenkins plugins are installed.
-* Docker slave/agent pipeline can be tested.
-* Jenkins built-in node remains online after the `/tmp` configuration is persisted.
-* `/tmp` is configured with approximately **1.5 GB** capacity.
-* Jenkins user has an interactive Bash shell for troubleshooting.
