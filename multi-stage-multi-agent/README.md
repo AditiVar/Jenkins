@@ -30,7 +30,7 @@ Pipeline architecture
 
                           │
                           ▼
-                          
+
                       Deployment
                     AWS CLI Agent
 
