@@ -1,0 +1,117 @@
+pipeline {
+
+    agent none
+
+    stages {
+
+        stage('Checkout') {
+            agent {
+                docker {
+                    image 'alpine/git:latest'
+                    reuseNode true
+                }
+            }
+
+            steps {
+                echo "Running Checkout stage on Git agent"
+
+                checkout scm
+
+                sh '''
+                    git --version
+                    echo "Checkout completed"
+                '''
+            }
+        }
+
+        stage('Backend Build') {
+            agent {
+                docker {
+                    image 'maven:3.9.9-eclipse-temurin-17'
+                    reuseNode true
+                }
+            }
+
+            steps {
+                echo "Running Backend Build on Maven agent"
+
+                sh '''
+                    mvn --version
+                    mvn clean package -DskipTests
+                '''
+            }
+        }
+
+        stage('Frontend Build') {
+            agent {
+                docker {
+                    image 'node:22'
+                    reuseNode true
+                }
+            }
+
+            steps {
+                echo "Running Frontend Build on Node.js agent"
+
+                sh '''
+                    node --version
+                    npm --version
+
+                    npm install
+                    npm run build
+                '''
+            }
+        }
+
+        stage('Testing') {
+            agent {
+                docker {
+                    image 'python:3.12'
+                    reuseNode true
+                }
+            }
+
+            steps {
+                echo "Running Testing on Python agent"
+
+                sh '''
+                    python --version
+                    echo "Running tests..."
+                    # pytest
+                '''
+            }
+        }
+
+        stage('Deployment') {
+            agent {
+                docker {
+                    image 'amazon/aws-cli:latest'
+                    reuseNode true
+                }
+            }
+
+            steps {
+                echo "Running Deployment on AWS CLI agent"
+
+                sh '''
+                    aws --version
+                    echo "Deployment commands go here"
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+
+        failure {
+            echo 'Pipeline failed!'
+        }
+
+        always {
+            echo 'Pipeline execution completed.'
+        }
+    }
+}
