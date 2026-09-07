@@ -35,6 +35,9 @@ Pipeline architecture
                     AWS CLI Agent
 
 
+
+
+
 | Configuration                           | Meaning                                                      |
 | --------------------------------------- | ------------------------------------------------------------ |
 | `agent none`                            | No global agent; each stage chooses its own                  |
