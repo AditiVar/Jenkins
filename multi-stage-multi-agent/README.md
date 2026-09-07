@@ -15,9 +15,9 @@ Pipeline architecture
         ┌─────────────────┼─────────────────┐
         │                 │                 │
         ▼                 ▼                 ▼
-   Checkout            Backend           Frontend
-   Git Agent           Maven Agent       Node Agent
-   alpine/git          Maven + JDK        Node.js
+   Checkout            Backend             Frontend
+   Git Agent           Maven Agent         Node Agent
+   alpine/git          Maven + JDK         Node.js                       
         │                 │                 │
         └─────────────────┼─────────────────┘
                           │
