@@ -8,26 +8,24 @@ Deploy → AWS CLI agent
 
 Pipeline architecture
 
-                    Jenkins Pipeline
-                          │
-                     agent none
-                          │
-        ┌─────────────────┼─────────────────┐
-        │                 │                 │
-        ▼                 ▼                 ▼
-   Checkout            Backend             Frontend
-   Git Agent           Maven Agent         Node Agent
-   alpine/git          Maven + JDK         Node.js                       
-        │                 │                 │
-        └─────────────────┼─────────────────┘
-                          │
-                          ▼
-                       Testing
-                     Python Agent
-                          │
-                          ▼
-                      Deployment
-                    AWS CLI Agent
+                                                Jenkins Pipeline
+                                                    │
+                                                agent none
+                                                    │
+        ┌───────────────────────────────────────────┼───────────────────────────────────────────┐
+        │                                           │                                           │
+        ▼                                           ▼                                           ▼
+   Checkout, Git Agent, alpine/git         Backend, Maven Agent, Maven + JDK           Frontend,Node Agent, Node.js
+        │                                           │                                           │
+        └───────────────────────────────────────────┼───────────────────────────────────────────┘
+                                                    │
+                                                    ▼
+                                                Testing
+                                                Python Agent
+                                                    │
+                                                    ▼
+                                                Deployment
+                                                AWS CLI Agent
 
 
 
