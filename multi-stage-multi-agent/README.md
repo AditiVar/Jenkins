@@ -15,22 +15,17 @@ Pipeline architecture
         ┌─────────────────┼─────────────────┐
         │                 │                 │
         ▼                 ▼                 ▼
-
    Checkout            Backend           Frontend
    Git Agent           Maven Agent       Node Agent
    alpine/git          Maven + JDK        Node.js
-
         │                 │                 │
         └─────────────────┼─────────────────┘
                           │
                           ▼
-
                        Testing
                      Python Agent
-
                           │
                           ▼
-
                       Deployment
                     AWS CLI Agent
 
